@@ -1,4 +1,14 @@
+variable "environment" {
+  type    = string
+  
+}
+
 variable "location" {
   type    = string
-  default = "Italy North"
+
+}
+
+variable "location_short" {
+  type    = string
+
 }
