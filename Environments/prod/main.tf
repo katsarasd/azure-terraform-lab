@@ -4,14 +4,3 @@ module "resource_group" {
   name     = "rg-con-${var.environment}-${var.location_short}-01"
   location = var.location
 }
-
-module "virtual_network" {
-  source  = "Azure/avm-res-network-virtualnetwork/azurerm"
-  parent_id = azurerm_resource_group.id
-  name = "vnet-con-${var.environment}-${var.location_short}-01"
-  location = var.location
-
-  address_space = [
-    "10.10.0.0/16"
-  ]
-}
