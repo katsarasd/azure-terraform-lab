@@ -14,8 +14,16 @@ module "rg-spoke01-net" {
 module "rg-spoke02-net" {
   source  = "Azure/avm-res-resources-resourcegroup/azurerm"
 
-  name     = "rg-spoke01-${var.environment}-${var.location_short}-net-01"
+  name     = "rg-spoke02-${var.environment}-${var.location_short}-net-01"
   location = var.location
+}
+
+module "rg-spoke03-net" {
+  source  = "Azure/avm-res-resources-resourcegroup/azurerm"
+
+  name     = "rg-spoke03-${var.environment}-${var.location_short}-net-01"
+  location = var.location
+
 }
 module "hub-vnet" {
   source = "Azure/avm-res-network-virtualnetwork/azurerm"
@@ -47,5 +55,16 @@ module "spoke02-vnet" {
 
   address_space = [
     "10.216.32.0/20"
+  ]
+}
+
+module "spoke02-vnet" {
+  source = "Azure/avm-res-network-virtualnetwork/azurerm"
+  parent_id = module.rg-spoke03-net.resource_id 
+  name                = "vnet-spoke02-${var.environment}-${var.location_short}-01"
+  location            = var.location
+
+  address_space = [
+    "10.216.48.0/20"
   ]
 }
