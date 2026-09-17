@@ -7,9 +7,8 @@ module "resource_group" {
 
 module "virtual_network" {
   source = "Azure/avm-res-network-virtualnetwork/azurerm"
-
+  parent_id = module.resource_group.resource_id 
   name                = "vnet-con-${var.environment}-${var.location_short}-01"
-  resource_group_name = module.resource_group.name
   location            = var.location
 
   address_space = [
