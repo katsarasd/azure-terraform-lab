@@ -46,6 +46,6 @@ module "spoke02-vnet" {
   location            = var.location
 
   address_space = [
-    "10.216.16.0/20"
+    "10.216.32.0/20"
   ]
 }
