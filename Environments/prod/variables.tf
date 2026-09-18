@@ -1,34 +1,42 @@
 variable "environment" {
-  type    = string
+  description = "Deployment environment, for example prod or uat."
+  type        = string
 }
 
 variable "location" {
-  type    = string
+  description = "Azure region used for the deployment."
+  type        = string
 }
 
 variable "location_short" {
-  type    = string
-}
-
-variable "address_space_hub-vnet" {
-  type = list(string)
-}
-
-variable "address_space_spoke01-vnet" {
-  type = list(string)
-}
-
-variable "address_space_spoke02-vnet" {
-  type = list(string)
-}
-
-variable "address_space_spoke03-vnet" {
-  type = list(string)
+  description = "Short name of the Azure region."
+  type        = string
 }
 
 variable "dns_servers" {
-  type = list(string)
+  description = "Custom DNS servers assigned to all virtual networks."
+  type        = list(string)
 }
 
+variable "networks" {
+  description = "Configuration of the hub and spoke virtual networks."
 
+  type = map(object({
+    resource_group_name = string
+    virtual_network_name = string
+    address_space        = list(string)
 
+    subnets = map(object({
+      name                            = string
+      address_prefixes                = list(string)
+      default_outbound_access_enabled = optional(bool, false)
+
+      routes = optional(map(object({
+        name                   = string
+        address_prefix         = string
+        next_hop_type          = string
+        next_hop_in_ip_address = optional(string)
+      })), {})
+    }))
+  }))
+}
