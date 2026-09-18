@@ -34,6 +34,7 @@ module "hub-vnet" {
   name                = "vnet-con-${var.environment}-${var.location_short}-01"
   location            = var.location
   address_space = var.address_space_hub-vnet
+  dns_servers = var.dns_servers
 }
 
 module "spoke01-vnet" {
@@ -42,6 +43,7 @@ module "spoke01-vnet" {
   name                = "vnet-spoke01-${var.environment}-${var.location_short}-01"
   location            = var.location
   address_space = var.address_space_spoke01-vnet
+  dns_servers = var.dns_servers
 
   subnets = {
     subnet0 = {
@@ -70,6 +72,7 @@ module "spoke02-vnet" {
   name                = "vnet-spoke02-${var.environment}-${var.location_short}-01"
   location            = var.location
   address_space = var.address_space_spoke02-vnet
+  dns_servers = var.dns_servers
 
   subnets = {
     subnet0 = {
@@ -86,6 +89,35 @@ module "spoke02-vnet" {
   subnet2 = {
       name                            = "snet-pe-spoke02-${var.environment}"
       address_prefixes                = ["10.126.34.0/27"]
+      default_outbound_access_enabled = false
+    
+  }
+}
+}
+
+module "spoke03-vnet" {
+  source = "Azure/avm-res-network-virtualnetwork/azurerm"
+  parent_id = module.rg-spoke03-net 
+  name                = "vnet-spoke03-${var.environment}-${var.location_short}-01"
+  location            = var.location
+  address_space = var.address_space_spoke03-vnet
+  dns_servers = var.dns_servers
+
+  subnets = {
+    subnet0 = {
+      name                            = "snet-web-spoke03-${var.environment}"
+      address_prefixes = ["10.126.48.0/24"]
+      default_outbound_access_enabled = false
+    }
+    subnet1 = {
+      name                            = "snet-db-spoke02-${var.environment}"
+      address_prefixes                = ["10.126.49.0/24"]
+      default_outbound_access_enabled = false
+    
+  }
+  subnet2 = {
+      name                            = "snet-pe-spoke03-${var.environment}"
+      address_prefixes                = ["10.126.50.0/27"]
       default_outbound_access_enabled = false
     
   }
