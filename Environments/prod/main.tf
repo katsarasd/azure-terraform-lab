@@ -74,8 +74,8 @@ module "spoke02-vnet" {
   subnets = {
     subnet0 = {
       name                            = "snet-app-spoke02-${var.environment}"
-      default_outbound_access_enabled = false
       address_prefixes = ["10.126.32.0/24"]
+      default_outbound_access_enabled = false
     }
     subnet1 = {
       name                            = "snet-sql-spoke02-${var.environment}"
@@ -84,11 +84,10 @@ module "spoke02-vnet" {
     
   }
   subnet2 = {
-      name                            = "snet-pe-spoke01-${var.environment}"
-      address_prefixes                = ["10.126.16.34.0/27"]
+      name                            = "snet-pe-spoke02-${var.environment}"
+      address_prefixes                = ["10.126.34.0/27"]
       default_outbound_access_enabled = false
     
   }
 }
 }
-
