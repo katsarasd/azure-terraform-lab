@@ -106,7 +106,7 @@ module "spoke02-vnet" {
 
 module "spoke03-vnet" {
   source = "Azure/avm-res-network-virtualnetwork/azurerm"
-  parent_id = module.rg-spoke03-net 
+  parent_id = module.rg-spoke02-net.resource_id 
   name                = "vnet-spoke03-${var.environment}-${var.location_short}-01"
   location            = var.location
   address_space = var.address_space_spoke03-vnet
