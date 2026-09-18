@@ -12,8 +12,18 @@ variable "location_short" {
 
 }
 
-variable "vnets" {
-  type = map(object({
-    address_space = list(string)
-  }))
+variable "hub-vnet" {
+  type = list(string)
+}
+
+variable "spoke01-vnet" {
+  type = list(string)
+}
+
+variable "spoke02-vnet" {
+  type = list(string)
+}
+
+variable "spoke03-vnet" {
+  type = list(string)
 }
