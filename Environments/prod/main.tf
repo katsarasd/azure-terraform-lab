@@ -63,31 +63,3 @@ module "spoke01-vnet" {
   }
 }
 }
-
-module "spoke02-vnet" {
-  source = "Azure/avm-res-network-virtualnetwork/azurerm"
-  parent_id = module.rg-spoke02-net.resource_id 
-  name                = "vnet-spoke02-${var.environment}-${var.location_short}-01"
-  location            = var.location
-  address_space = var.address_space_spoke02-vnet
-
-  subnets = {
-    subnet0 = {
-      name                            = "snet-app-spoke02-${var.environment}"
-      default_outbound_access_enabled = false
-      address_prefixes = ["10.126.32.0/24"]
-    }
-    subnet1 = {
-      name                            = "snet-sql-spoke02-${var.environment}"
-      address_prefixes                = ["10.126.33.0/24"]
-      default_outbound_access_enabled = false
-    
-  }
-  subnet2 = {
-      name                            = "snet-pe-spoke02-${var.environment}"
-      address_prefixes                = ["10.126.34.0/24"]
-      default_outbound_access_enabled = false
-    
-  }
-}
-}
