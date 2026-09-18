@@ -35,9 +35,7 @@ module "hub-vnet" {
   location            = var.location
   address_space = var.address_space_hub-vnet
 
-  dns_servers = {
-    dns_servers = var.dns_servers
-  }
+  dns_servers = var.dns_servers
 }
 
 module "spoke01-vnet" {
@@ -47,9 +45,7 @@ module "spoke01-vnet" {
   location            = var.location
   address_space = var.address_space_spoke01-vnet
   
-  dns_servers = {
-    dns_servers = var.dns_servers
-  }
+  dns_servers = var.dns_servers
 
   subnets = {
     subnet0 = {
@@ -79,9 +75,7 @@ module "spoke02-vnet" {
   location            = var.location
   address_space = var.address_space_spoke02-vnet
 
-  dns_servers = {
-    dns_servers = var.dns_servers
-  }
+  dns_servers = var.dns_servers
 
   subnets = {
     subnet0 = {
@@ -111,9 +105,7 @@ module "spoke03-vnet" {
   location            = var.location
   address_space = var.address_space_spoke03-vnet
   
-  dns_servers = {
-    dns_servers = var.dns_servers
-  }
+  dns_servers = var.dns_servers
 
   subnets = {
     subnet0 = {
