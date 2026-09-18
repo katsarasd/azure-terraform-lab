@@ -32,7 +32,7 @@ module "hub-vnet" {
   parent_id = module.rg-con-hub.resource_id 
   name                = "vnet-con-${var.environment}-${var.location_short}-01"
   location            = var.location
-
+  address_space = var.address_space_hub-vnet
 }
 
 module "spoke01-vnet" {
@@ -40,7 +40,7 @@ module "spoke01-vnet" {
   parent_id = module.rg-spoke01-net.resource_id 
   name                = "vnet-spoke01-${var.environment}-${var.location_short}-01"
   location            = var.location
-
+  address_space = var.address_space_spoke01-vnet
 }
 
 module "spoke02-vnet" {
@@ -48,7 +48,7 @@ module "spoke02-vnet" {
   parent_id = module.rg-spoke02-net.resource_id 
   name                = "vnet-spoke02-${var.environment}-${var.location_short}-01"
   location            = var.location
-
+  address_space = var.address_space_spoke02-vnet
 }
 
 module "spoke03-vnet" {
@@ -56,6 +56,6 @@ module "spoke03-vnet" {
   parent_id = module.rg-spoke03-net.resource_id 
   name                = "vnet-spoke03-${var.environment}-${var.location_short}-01"
   location            = var.location
-
+  address_space = var.address_space_spoke03-vnet
 }
 

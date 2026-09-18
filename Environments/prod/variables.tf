@@ -12,18 +12,18 @@ variable "location_short" {
 
 }
 
-variable "hub-vnet" {
+variable "address_space_hub-vnet" {
   type = list(string)
 }
 
-variable "spoke01-vnet" {
+variable "address_space_spoke01-vnet" {
   type = list(string)
 }
 
-variable "spoke02-vnet" {
+variable "address_space_spoke02-vnet" {
   type = list(string)
 }
 
-variable "spoke03-vnet" {
+variable "address_space_spoke03-vnet" {
   type = list(string)
 }
