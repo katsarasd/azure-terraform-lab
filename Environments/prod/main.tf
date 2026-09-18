@@ -69,7 +69,7 @@ module "spoke02-vnet" {
   parent_id = module.rg-spoke02-net.resource_id 
   name                = "vnet-spoke02-${var.environment}-${var.location_short}-01"
   location            = var.location
-  address_space = var.address_space_spoke01-vnet
+  address_space = var.address_space_spoke02-vnet
 
   subnets = {
     subnet0 = {
