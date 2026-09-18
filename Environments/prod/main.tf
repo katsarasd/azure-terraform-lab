@@ -7,26 +7,6 @@ module "resource_group" {
   location = var.location
 }
 
-module "route_table" {
-  for_each = local.subnets
-
-  source  = "Azure/avm-res-network-routetable/azurerm"
-  version = "~> 0.5"
-
-  name = "rt-${each.value.subnet_key}-${each.value.network_key}-${var.environment}-${var.location_short}-01"
-
-  location            = var.location
-  resource_group_name = each.value.resource_group_name
-
-  disable_bgp_route_propagation = false
-
-  routes = each.value.routes
-
-  depends_on = [
-    module.resource_group
-  ]
-}
-
 module "virtual_network" {
   for_each = var.networks
 
@@ -48,14 +28,6 @@ module "virtual_network" {
       name                            = subnet.name
       address_prefixes                = subnet.address_prefixes
       default_outbound_access_enabled = subnet.default_outbound_access_enabled
-
-      route_table = {
-        id = module.route_table["${each.key}.${subnet_key}"].resource_id
-      }
     }
   }
-
-  depends_on = [
-    module.route_table
-  ]
 }

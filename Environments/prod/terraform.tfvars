@@ -26,21 +26,21 @@ networks = {
         name                            = "snet-dc-spoke01-prod"
         address_prefixes                = ["10.126.16.0/28"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
 
       ca = {
         name                            = "snet-ca-spoke01-prod"
         address_prefixes                = ["10.126.16.16/28"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
 
       pki = {
         name                            = "snet-pki-spoke01-prod"
         address_prefixes                = ["10.126.16.32/28"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
     }
   }
@@ -55,21 +55,21 @@ networks = {
         name                            = "snet-app-spoke02-prod"
         address_prefixes                = ["10.126.32.0/24"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
 
       sql = {
         name                            = "snet-sql-spoke02-prod"
         address_prefixes                = ["10.126.33.0/24"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
 
       private_endpoints = {
         name                            = "snet-pe-spoke02-prod"
         address_prefixes                = ["10.126.34.0/27"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
     }
   }
@@ -84,21 +84,21 @@ networks = {
         name                            = "snet-web-spoke03-prod"
         address_prefixes                = ["10.126.48.0/24"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
 
       database = {
         name                            = "snet-db-spoke03-prod"
         address_prefixes                = ["10.126.49.0/24"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
 
       private_endpoints = {
         name                            = "snet-pe-spoke03-prod"
         address_prefixes                = ["10.126.50.0/27"]
         default_outbound_access_enabled = false
-        routes                          = {}
+        
       }
     }
   }
