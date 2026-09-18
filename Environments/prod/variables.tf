@@ -29,3 +29,6 @@ variable "address_space_spoke03-vnet" {
 variable "dns_servers" {
   type = list(string)
 }
+
+
+
