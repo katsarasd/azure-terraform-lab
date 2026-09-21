@@ -2,7 +2,7 @@ locals {
   name_replacements = {
     workload    = var.resource_name_workload
     environment = var.environment
-    location    = var.location
+    location    = var.location_short
     sequence    = format("%03d", var.resource_name_sequence_start)
   }
 

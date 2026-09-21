@@ -1,8 +1,3 @@
-variable "location" {
-  description = "Azure region used for the deployment."
-  type        = string
-}
-
 variable "location_short" {
   description = "Short name of the Azure region."
   type        = string
@@ -34,6 +29,6 @@ variable "resource_name_templates" {
   type        = map(string)
   description = "A map of resource names to use"
   default = {
-    resource_group_name          = "rg-$${workload}-$${environment}-$${location}-$${sequence}"
+    resource_group_name   = "rg-$${workload}-$${environment}-$${location_short}-$${sequence}"
   }
 }

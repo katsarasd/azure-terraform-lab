@@ -1,1 +1,2 @@
-location       = "ItalyNorth"
+environment    = "prod"
+location_short = "itn"
