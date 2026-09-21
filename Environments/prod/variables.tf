@@ -6,13 +6,13 @@ variable "location" {
 variable "resource_name_workload" {
   type        = string
   description = "The name segment for the workload"
-  default     = "demo"
+  default     = "con"
 }
 
 variable "resource_name_environment" {
   type        = string
   description = "The name segment for the environment"
-  default     = "dev"
+  default     = "prod"
 }
 
 variable "resource_name_sequence_start" {

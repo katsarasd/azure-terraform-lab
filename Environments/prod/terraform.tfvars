@@ -1,1 +1,1 @@
-location       = "Italy North"
+location       = "ItalyNorth"
