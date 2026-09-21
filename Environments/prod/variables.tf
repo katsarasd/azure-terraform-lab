@@ -3,16 +3,21 @@ variable "location" {
   type        = string
 }
 
+variable "location_short" {
+  description = "Short name of the Azure region."
+  type        = string
+}
+
 variable "resource_name_workload" {
   type        = string
   description = "The name segment for the workload"
   default     = "con"
 }
 
-variable "resource_name_environment" {
+variable "environment" {
   type        = string
   description = "The name segment for the environment"
-  default     = "prod"
+ 
 }
 
 variable "resource_name_sequence_start" {
@@ -20,8 +25,8 @@ variable "resource_name_sequence_start" {
   description = "The number to use for the resource names"
   default     = 1
   validation {
-    condition     = var.resource_name_sequence_start >= 1 && var.resource_name_sequence_start <= 999
-    error_message = "The number must be between 1 and 999"
+    condition     = var.resource_name_sequence_start >= 1 && var.resource_name_sequence_start <= 99
+    error_message = "The number must be between 1 and 99"
   }
 }
 
