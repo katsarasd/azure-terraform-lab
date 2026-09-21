@@ -4,6 +4,6 @@ output "resource_names" {
 
 output "resource_ids" {
   value = {
-    resource_group          = module.resource_group.resource_id
+    resource_group = module.resource_group.resource_id
   }
 }
