@@ -1,3 +1,7 @@
+variable "location" {
+  description = "Name of the Azure region."
+  type        = string
+}
 variable "location_short" {
   description = "Short name of the Azure region."
   type        = string
