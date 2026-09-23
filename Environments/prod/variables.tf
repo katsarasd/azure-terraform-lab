@@ -13,6 +13,16 @@ variable "environment" {
  
 }
 
+variable "dns_servers" {
+  description = "Custom DNS servers assigned to all virtual networks."
+  type        = list(string)
+
+  validation {
+    condition     = length(var.dns_servers) == 2
+    error_message = "Exactly two custom DNS servers must be provided."
+  }
+}
+
 variable "resource_name_sequence" {
   description = "Naming sequence"
   type        = number
@@ -24,11 +34,26 @@ variable "resource_name_sequence" {
   }
 }
 variable "resource_groups" {
-  description = "Resource groups to create"
+  description = "Resource groups to Create"
 
   type = map(object({
     workload = string
     role     = string
+  }))
+}
+
+variable "vnets" {
+  description = "VNets and their subnets"
+
+  type = map(object({
+    workload       = string
+    resource_group = string
+    address_space  = list(string)
+
+    subnets = map(object({
+      role           = string
+      address_prefix = string
+    }))
   }))
 }
 
