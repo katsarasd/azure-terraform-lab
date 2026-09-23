@@ -80,17 +80,17 @@ vnets = {
   web = {
     workload       = "web"
     resource_group = "web_net"
-    address_space  = ["10.20.0.0/16"]
+    address_space  = ["10.126.32.0/20"]
 
     subnets = {
       app = {
         role           = "app"
-        address_prefix = "10.20.1.0/24"
+        address_prefix = "10.126.32.0/24"
       }
 
       sql = {
         role           = "sql"
-        address_prefix = "10.20.2.0/24"
+        address_prefix = "10.126.33.0/24"
       }
     }
   }
