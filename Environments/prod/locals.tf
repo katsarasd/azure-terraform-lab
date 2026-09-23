@@ -1,10 +1,6 @@
 locals {
-  name_replacements = {
-    workload    = var.resource_name_workload
-    environment = var.environment
-    location_short = var.location_short
-    sequence    = format("%02d", var.resource_name_sequence_start)
+  resource_group_names = {
+    for key, rg in var.resource_groups :
+    key => "rg-${rg.workload}-${var.environment}-${rg.role}-${var.location_short}-${format("%02d", var.resource_name_sequence)}"
   }
-
-  resource_names = { for key, value in var.resource_name_templates : key => templatestring(value, local.name_replacements) }
 }

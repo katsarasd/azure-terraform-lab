@@ -1,9 +1,10 @@
-output "resource_names" {
-  value = local.resource_names
+output "resource_group_names" {
+  value = local.resource_group_names
 }
 
-output "resource_ids" {
+output "resource_group_ids" {
   value = {
-    resource_group = module.resource_group.resource_id
+    for key, rg in module.resource_group :
+    key => rg.resource_id
   }
 }

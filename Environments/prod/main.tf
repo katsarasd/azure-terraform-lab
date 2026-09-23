@@ -1,7 +1,8 @@
 module "resource_group" {
-  source   = "Azure/avm-res-resources-resourcegroup/azurerm"
+  for_each = local.resource_group_names
+
+  source = "Azure/avm-res-resources-resourcegroup/azurerm"
 
   location = var.location
-  name     = local.resource_names.resource_group_name
-  
+  name     = each.value
 }
