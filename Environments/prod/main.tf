@@ -40,7 +40,6 @@ module "virtual_network" {
 
   subnets = {
     for subnet_key, subnet in each.value.subnets :
-
     subnet_key => {
       name = "snet-${subnet.role}-${each.value.workload}-${var.environment}-${var.location_short}"
 
@@ -48,7 +47,7 @@ module "virtual_network" {
         subnet.address_prefix
       ]
 
-      network_security_group = subnet.create_nsg ? {
+      network_security_group = try(subnet.create_nsg, false) ? {
         id = module.network_security_group[
           "${each.key}_${subnet_key}"
         ].resource_id
