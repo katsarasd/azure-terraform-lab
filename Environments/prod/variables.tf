@@ -20,8 +20,8 @@ variable "resource_name_sequence" {
 
   validation {
     condition = (
-      var.resource_name_sequence_start >= 1 &&
-      var.resource_name_sequence_start <= 99
+      var.resource_name_sequence >= 1 &&
+      var.resource_name_sequence <= 99
     )
 
     error_message = "The number must be between 1 and 99."
