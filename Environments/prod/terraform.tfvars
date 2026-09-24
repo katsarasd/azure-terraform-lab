@@ -56,6 +56,7 @@ vnets = {
         address_prefix = "10.126.1.0/24"
       }
 
+
     }
   }
 
