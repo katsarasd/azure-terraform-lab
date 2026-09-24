@@ -38,4 +38,8 @@ resource_groups = {
     workload = "web"
     role     = "sql"
   }
+  web_sql = {
+    workload = "web"
+    role     = "st"
+  }
 }
