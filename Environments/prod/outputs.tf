@@ -18,3 +18,14 @@ output "vnet_ids" {
     key => vnet.resource_id
   }
 }
+
+output "nsg_names" {
+  value = local.nsg_names
+}
+
+output "nsg_ids" {
+  value = {
+    for key, nsg in module.network_security_group :
+    key => nsg.resource_id
+  }
+}

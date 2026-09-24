@@ -29,9 +29,20 @@ module "virtual_network" {
     subnet_key => {
       name = "snet-${subnet.role}-${each.value.workload}-${var.environment}-${var.location_short}"
 
-      address_prefixes = [
-        subnet.address_prefix
-      ]
+      address_prefixes = [subnet.address_prefix]
+
     }
   }
+}
+
+module "network_security_group" {
+
+  for_each = var.nsgs
+
+  source = "Azure/avm-res-network-networksecuritygroup/azurerm"
+
+  name     = local.nsg_names[each.key]
+  location = var.location
+
+  resource_group_name = module.resource_group[each.value.resource_group].name
 }

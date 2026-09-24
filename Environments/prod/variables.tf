@@ -56,6 +56,15 @@ variable "vnets" {
     }))
   }))
 }
+variable "nsgs" {
+  description = "NSGs to create"
+
+  type = map(object({
+    workload       = string
+    resource_group = string
+    subnet_role    = string
+  }))
+}
 
 # variable "resource_name_workload" {
   # type        = string

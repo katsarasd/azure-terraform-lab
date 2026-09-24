@@ -96,3 +96,36 @@ vnets = {
     }
   }
 }
+
+nsgs = {
+
+  con_mgmt = {
+    workload       = "con"
+    resource_group = "con_hub"
+    subnet_role    = "mgmt"
+  }
+
+  idnt_dc = {
+    workload       = "idnt"
+    resource_group = "idnt_net"
+    subnet_role    = "dc"
+  }
+
+  idnt_ca = {
+    workload       = "idnt"
+    resource_group = "idnt_net"
+    subnet_role    = "ca"
+  }
+
+  web_app = {
+    workload       = "web"
+    resource_group = "web_net"
+    subnet_role    = "app"
+  }
+
+  web_sql = {
+    workload       = "web"
+    resource_group = "web_net"
+    subnet_role    = "sql"
+  }
+}

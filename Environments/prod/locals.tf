@@ -10,3 +10,12 @@ locals {
     key => "vnet-${vnet.workload}-${var.environment}-${var.location_short}-${format("%02d", var.resource_name_sequence)}"
   }
 }
+
+locals {
+
+  nsg_names = {
+    for key, nsg in var.nsgs :
+    key => "nsg-snet-${nsg.subnet_role}-${nsg.workload}-${var.environment}-${var.location_short}"
+  }
+
+}
