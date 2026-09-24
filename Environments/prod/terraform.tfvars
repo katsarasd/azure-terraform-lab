@@ -97,7 +97,7 @@ vnets = {
       }
       pe = {
         role            = "pe"
-        address_prefixes = "10.126.34.0/26"
+        address_prefixes = ["10.126.34.0/26"]
         nsg_enabled     = true
       }
     }
