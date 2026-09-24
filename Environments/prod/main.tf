@@ -43,7 +43,7 @@ module "virtual_network" {
     subnet_key => {
       name = "snet-${subnet.role}-${each.value.workload}-${var.environment}-${var.location_short}"
 
-      address_prefixes = [subnet.address_prefixes]
+      address_prefixes = subnet.address_prefixes
 
       network_security_group = try(subnet.create_nsg, false) ? {
         id = module.network_security_group[
