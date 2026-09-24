@@ -34,11 +34,11 @@ resource_groups = {
     workload = "web"
     role     = "app"
   }
-  web_app = {
+  web_sql = {
     workload = "web"
     role     = "sql"
   }
-  web_app = {
+  web_st = {
     workload = "web"
     role     = "st"
   }
