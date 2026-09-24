@@ -42,3 +42,19 @@ variable "resource_groups" {
   }))
 }
 
+variable "vnets" {
+  description = "VNets and their subnets"
+
+  type = map(object({
+    workload       = string
+    resource_group = string
+    address_space  = list(string)
+
+    subnets = map(object({
+      role           = string
+      address_prefix = string
+       create_nsg    = optional(bool, false)
+    }))
+  }))
+}
+

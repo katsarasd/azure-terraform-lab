@@ -43,3 +43,71 @@ resource_groups = {
     role     = "st"
   }
 }
+
+vnets = {
+  con = {
+    workload       = "con"
+    resource_group = "con_hub"
+    address_space  = ["10.126.0.0/20"]
+
+    subnets = {
+      firewall = {
+        role           = "fw"
+        address_prefix = "10.126.0.0/24"
+        create_nsg     = false
+      }
+      mgmt = {
+        role           = "mgmt"
+        address_prefix = "10.126.1.0/24"
+        create_nsg     = true
+      }
+
+
+    }
+  }
+
+  idnt = {
+    workload       = "idnt"
+    resource_group = "idnt_net"
+    address_space  = ["10.126.16.0/20"]
+
+    subnets = {
+      dc = {
+        role           = "dc"
+        address_prefix = "10.126.16.0/28"
+        create_nsg     = true
+      }
+
+      ca = {
+        role           = "ca"
+        address_prefix = "10.126.16.16/28"
+        create_nsg     = true
+      }
+    }
+  }
+
+  web = {
+    workload       = "web"
+    resource_group = "web_net"
+    address_space  = ["10.126.32.0/20"]
+
+    subnets = {
+      app = {
+        role           = "app"
+        address_prefix = "10.126.32.0/24"
+        create_nsg     = true
+      }
+
+      sql = {
+        role           = "sql"
+        address_prefix = "10.126.33.0/24"
+        create_nsg     = true
+      }
+      pe = {
+        role           = "pe"
+        address_prefix = "10.126.34.0/26"
+        create_nsg     = true
+      }
+    }
+  }
+}
