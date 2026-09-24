@@ -13,8 +13,26 @@ locals {
 
 locals {
 
+  nsgs = merge([
+    for vnet_key, vnet in var.vnets : {
+      for subnet_key, subnet in vnet.subnets :
+
+      "${vnet_key}-${subnet_key}" => {
+
+        workload       = vnet.workload
+        resource_group = vnet.resource_group
+        subnet_role    = subnet.role
+
+      } if subnet.create_nsg
+    }
+  ]...)
+}
+
+locals {
+
   nsg_names = {
-    for key, nsg in var.nsgs :
+    for key, nsg in local.nsgs :
+
     key => "nsg-snet-${nsg.subnet_role}-${nsg.workload}-${var.environment}-${var.location_short}"
   }
 

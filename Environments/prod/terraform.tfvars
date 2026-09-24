@@ -50,10 +50,12 @@ vnets = {
       firewall = {
         role           = "fw"
         address_prefix = "10.126.0.0/24"
+        create_nsg     = false
       }
       mgmt = {
         role           = "mgmt"
         address_prefix = "10.126.1.0/24"
+        create_nsg     = true
       }
 
 
@@ -69,11 +71,13 @@ vnets = {
       dc = {
         role           = "dc"
         address_prefix = "10.126.16.0/28"
+        create_nsg     = true
       }
 
       ca = {
         role           = "ca"
         address_prefix = "10.126.16.16/28"
+        create_nsg     = true
       }
     }
   }
@@ -87,45 +91,14 @@ vnets = {
       app = {
         role           = "app"
         address_prefix = "10.126.32.0/24"
+        create_nsg     = true
       }
 
       sql = {
         role           = "sql"
         address_prefix = "10.126.33.0/24"
+        create_nsg     = true
       }
     }
-  }
-}
-
-nsgs = {
-
-  con_mgmt = {
-    workload       = "con"
-    resource_group = "con_hub"
-    subnet_role    = "mgmt"
-  }
-
-  idnt_dc = {
-    workload       = "idnt"
-    resource_group = "idnt_net"
-    subnet_role    = "dc"
-  }
-
-  idnt_ca = {
-    workload       = "idnt"
-    resource_group = "idnt_net"
-    subnet_role    = "ca"
-  }
-
-  web_app = {
-    workload       = "web"
-    resource_group = "web_net"
-    subnet_role    = "app"
-  }
-
-  web_sql = {
-    workload       = "web"
-    resource_group = "web_net"
-    subnet_role    = "sql"
   }
 }

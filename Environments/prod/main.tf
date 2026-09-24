@@ -37,7 +37,7 @@ module "virtual_network" {
 
 module "network_security_group" {
 
-  for_each = var.nsgs
+  for_each = local.nsgs
 
   source = "Azure/avm-res-network-networksecuritygroup/azurerm"
 
