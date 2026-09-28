@@ -32,4 +32,24 @@ locals {
     for key, nsg in local.nsgs :
     key => "nsg-snet-${nsg.subnet_role}-${nsg.workload}-${var.environment}-${var.location_short}"
   }
+
+  route_tables = merge([
+    for vnet_key, vnet in var.vnets : {
+      for subnet_key, subnet in vnet.subnets :
+      "${vnet_key}-${subnet_key}" => {
+        workload              = vnet.workload
+        resource_group        = vnet.resource_group
+        subnet_role           = subnet.role
+        vnet_key              = vnet_key
+        vnet_address_space     = vnet.address_space[0]
+        subnet_address_prefix = subnet.address_prefixes[0]
+      }
+      if subnet.route_table_enabled
+    }
+  ]...)
+
+  route_table_names = {
+    for key, route_table in local.route_tables :
+    key => "rt-snet-${route_table.subnet_role}-${route_table.workload}-${var.environment}-${var.location_short}"
+  }
 }

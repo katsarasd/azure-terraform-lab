@@ -2,6 +2,7 @@ environment            = "prod"
 location               = "Italy North"
 location_short         = "itn"
 resource_name_sequence = 1
+firewall_next_hop_address = "10.216.0.4"
 
 dns_servers = [
   "10.126.16.4",
@@ -61,12 +62,14 @@ vnets = {
         role             = "mgmt"
         address_prefixes = ["10.126.1.0/24"]
         nsg_enabled      = true
+        route_table_enabled = true
       }
 
       firewall = {
         role             = "firewall"
         address_prefixes = ["10.126.0.0/24"]
         nsg_enabled      = false
+        route_table_enabled = false
       }
     }
   }
@@ -81,12 +84,14 @@ vnets = {
         role             = "dc"
         address_prefixes = ["10.126.16.0/28"]
         nsg_enabled      = true
+        route_table_enabled = true
       }
 
       ca = {
         role             = "ca"
         address_prefixes = ["10.126.16.16/28"]
         nsg_enabled      = true
+        route_table_enabled = true
       }
     }
   }
@@ -101,18 +106,21 @@ vnets = {
         role             = "app"
         address_prefixes = ["10.126.32.0/24"]
         nsg_enabled      = true
+        route_table_enabled = true
       }
 
       sql = {
         role             = "sql"
         address_prefixes = ["10.126.33.0/24"]
         nsg_enabled      = true
+        route_table_enabled = true
       }
 
       pe = {
         role             = "pe"
         address_prefixes = ["10.126.34.0/26"]
         nsg_enabled      = true
+        route_table_enabled = true
       }
     }
   }

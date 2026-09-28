@@ -22,6 +22,10 @@ variable "dns_servers" {
     error_message = "Exactly two custom DNS servers must be provided."
   }
 }
+variable firewall_next_hop_address {
+ description = "Firewall VIP used for routing."
+ type        = string
+}
 
 variable "resource_name_sequence" {
   description = "Naming sequence."
@@ -55,6 +59,7 @@ variable "vnets" {
       role             = string
       address_prefixes = list(string)
       nsg_enabled      = optional(bool, false)
+      route_table_enabled = optional(bool, false)
     }))
   }))
 }
