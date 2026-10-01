@@ -1,6 +1,5 @@
 output "resource_group_names" {
-  description = "The name of the resource group"
-  value       = local.resource_group.names
+  value = local.resource_group_names
 }
 output "resource_group_id" {
   description = "The resource Id of the resource group"
