@@ -22,10 +22,41 @@ variable "resource_name_sequence" {
   }
 }
 
+variable "dns_servers" {
+  description = "Custom DNS servers assigned to all virtual networks."
+  type        = list(string)
+
+  validation {
+    condition     = length(var.dns_servers) == 2
+    error_message = "Exactly two custom DNS servers must be provided."
+  }
+}
+
+variable "firewall_next_hop_address" {
+  description = "Private IP address of the firewall used as the next hop."
+  type        = string
+}
+
 variable resource_groups{
     type = map(object({
         workload = string
         role     = string
     }))
-    
+}
+
+variable "vnets" {
+  description = "Virtual networks and their subnets."
+
+  type = map(object({
+    workload       = string
+    resource_group = string
+    address_space  = list(string)
+
+    subnets = map(object({
+      role                = string
+      address_prefixes    = list(string)
+      nsg_enabled         = optional(bool, false)
+      route_table_enabled = optional(bool, false)
+    }))
+  }))
 }
