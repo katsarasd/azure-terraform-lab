@@ -12,6 +12,19 @@ firewallname1             = "fgt-con-prod-itn-01"
 firewallname2             = "fgt-con-prod-itn-02"
 fortigate_admin_username  = "afentiko"
 fortigate_admin_password  = "Kodikos2026!"
+
+# Active FortiGate interface IPs
+activeport1 = "10.216.0.4"
+activeport2 = "10.216.0.69"
+activeport3 = "10.216.0.196"
+activeport4 = "10.216.0.132"
+
+# Passive FortiGate interface IPs
+passiveport1 = "10.216.0.5"
+passiveport2 = "10.216.0.70"
+passiveport3 = "10.216.0.197"
+passiveport4 = "10.216.0.133"
+
 activeport1mask = "255.255.255.192"
 activeport2mask = "255.255.255.192"
 activeport3mask = "255.255.255.192"
@@ -25,7 +38,6 @@ passiveport4mask = "255.255.255.192"
 port1gateway = "10.216.0.1"
 port2gateway = "10.216.0.65"
 port3gateway = "10.216.0.193"
-
 
 resource_groups = {
   con_hub = {
