@@ -5,6 +5,15 @@ resource_name_sequence    = 1
 dns_servers               = [ "10.126.16.4", "10.126.16.5"]
 
 firewall_next_hop_address = "10.216.0.68"
+fortigate_arch = "x64"
+fortigate_license_type = "payg"
+
+fortigate_sku = {
+  x64 = {
+    payg = "fortinet_fg-vm_payg_2023"
+    byol = "fortinet_fg-vm"
+    }
+  }
 external_lb               = "lbe-fgt-con-itn"
 internal_lb               = "lbi-fgt-con-prod-itn"
 external_lb_pip           = "pip-lbe-fgt-con-itn"
