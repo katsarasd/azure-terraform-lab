@@ -32,6 +32,13 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Accept FortiGate Marketplace terms
+        run: |
+          az vm image terms accept \
+            --publisher fortinet \
+            --offer fortinet_fortigate-vm_v5 \
+            --plan fortinet_fg-vm_payg_2023
+            
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 

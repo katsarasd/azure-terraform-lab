@@ -46,9 +46,9 @@ passiveport2mask = "255.255.255.192"
 passiveport3mask = "255.255.255.192"
 passiveport4mask = "255.255.255.192"
 
-port1gateway = "10.126..0.1"
-port2gateway = "10.126..0.65"
-port3gateway = "10.126..0.193"
+port1gateway = "10.126.0.1"
+port2gateway = "10.126.0.65"
+port3gateway = "10.126.0.193"
 
 resource_groups = {
   con_hub = {
