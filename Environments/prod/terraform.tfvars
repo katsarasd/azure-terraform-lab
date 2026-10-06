@@ -4,7 +4,7 @@ environment               = "prd"
 resource_name_sequence    = 1
 dns_servers               = [ "10.126.16.4", "10.126.16.5"]
 
-firewall_next_hop_address = "10.216.0.68"
+firewall_next_hop_address = "10.126.0.68"
 fortigate_arch = "x64"
 fortigate_license_type = "payg"
 zone1 = "1"
@@ -25,16 +25,16 @@ fortigate_admin_username  = "afentiko"
 fortigate_admin_password  = "Kodikos2026!"
 
 # Active FortiGate interface IPs
-activeport1 = "10.216.0.4"
-activeport2 = "10.216.0.69"
-activeport3 = "10.216.0.196"
-activeport4 = "10.216.0.132"
+activeport1 = "10.126.0.4"
+activeport2 = "10.126.0.69"
+activeport3 = "10.126.0.196"
+activeport4 = "10.126.0.132"
 
 # Passive FortiGate interface IPs
-passiveport1 = "10.216.0.5"
-passiveport2 = "10.216.0.70"
-passiveport3 = "10.216.0.197"
-passiveport4 = "10.216.0.133"
+passiveport1 = "10.126..0.5"
+passiveport2 = "10.126.0.70"
+passiveport3 = "10.126..0.197"
+passiveport4 = "10.126..0.133"
 
 activeport1mask = "255.255.255.192"
 activeport2mask = "255.255.255.192"
@@ -46,9 +46,9 @@ passiveport2mask = "255.255.255.192"
 passiveport3mask = "255.255.255.192"
 passiveport4mask = "255.255.255.192"
 
-port1gateway = "10.216.0.1"
-port2gateway = "10.216.0.65"
-port3gateway = "10.216.0.193"
+port1gateway = "10.126..0.1"
+port2gateway = "10.126..0.65"
+port3gateway = "10.126..0.193"
 
 resource_groups = {
   con_hub = {
@@ -101,28 +101,28 @@ vnets = {
     subnets = {
       fgt-external = {
         role = "fgt-external"
-        address_prefixes   = ["10.216.0.0/26"]
+        address_prefixes   = ["10.126.0.0/26"]
         nsg_enabled        = false
        route_table_enabled = false
       }
 
       fgt-internal = {
         role = "fgt-internal"
-        address_prefixes   = ["10.216.0.64/26"]
+        address_prefixes   = ["10.126.0.64/26"]
         nsg_enabled        = false
        route_table_enabled = false
       }
 
       fgt-hasync = {
         role = "fgt-hasync"
-        address_prefixes    = ["10.216.0.128/26"]
+        address_prefixes    = ["10.126.0.128/26"]
         nsg_enabled         = false
         route_table_enabled = false
       }
 
       fgt-hamgmt = {
         role = "hamgmt"
-        address_prefixes    = ["10.216.0.192/26"]
+        address_prefixes    = ["10.126.0.192/26"]
         nsg_enabled         = false
         route_table_enabled = false
       }
@@ -130,14 +130,14 @@ vnets = {
       azure-bastion = {
         name = "AzureBastionSubnet"
         role = "azure-bastion"
-        address_prefixes = ["10.216.1.0/26"]
+        address_prefixes = ["10.126.1.0/26"]
         nsg_enabled = false
        route_table_enabled = false
       }
 
       shared-services = {
         role = "shared-services"
-        address_prefixes = ["10.216.1.64/26"]
+        address_prefixes = ["10.126.1.64/26"]
         nsg_enabled = true
         route_table_enabled = true
         }
