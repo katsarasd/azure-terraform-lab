@@ -105,19 +105,16 @@ module "fortinet_ha" {
   location            = var.location
   resource_group_name = module.resource_group["con_hub"].name
   common_tags         = var.common_tags
-
   zone1 = var.zone1
   zone2 = var.zone2
-
   size = var.fortigate_vm_size
-
   firewallname1 = var.firewallname1
   firewallname2 = var.firewallname2
 
-  ha_management_subnet_id = module.virtual_network["con"].subnets["hamgmt"].resource_id
-  external_subnet_id      = module.virtual_network["con"].subnets["external"].resource_id
-  internal_subnet_id      = module.virtual_network["con"].subnets["internal"].resource_id
-  ha_sync_subnet_id       = module.virtual_network["con"].subnets["hasync"].resource_id
+ ha_management_subnet_id = module.virtual_network["con"].subnets["fgt-hamgmt"].resource_id
+ external_subnet_id      = module.virtual_network["con"].subnets["fgt-external"].resource_id
+ internal_subnet_id      = module.virtual_network["con"].subnets["fgt-internal"].resource_id
+ ha_sync_subnet_id       = module.virtual_network["con"].subnets["fgt-hasync"].resource_id
 
   activeport1 = var.activeport1
   activeport2 = var.activeport2
