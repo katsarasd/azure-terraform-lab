@@ -7,6 +7,8 @@ dns_servers               = [ "10.126.16.4", "10.126.16.5"]
 firewall_next_hop_address = "10.216.0.68"
 fortigate_arch = "x64"
 fortigate_license_type = "payg"
+zone1 = "1"
+zone2 = "2"
 
 fortigate_sku = {
   x64 = {
