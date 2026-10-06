@@ -92,7 +92,7 @@ variable "fortigate_arch" {
 variable "fortigate_version" {
   description = "FortiGate Marketplace image version."
   type = string
-  default = "7.6.7"
+  default = "7.6.5"
 }
 
 variable "fortigate_license_type" {

@@ -31,10 +31,10 @@ activeport3 = "10.126.0.196"
 activeport4 = "10.126.0.132"
 
 # Passive FortiGate interface IPs
-passiveport1 = "10.126..0.5"
+passiveport1 = "10.126.0.5"
 passiveport2 = "10.126.0.70"
-passiveport3 = "10.126..0.197"
-passiveport4 = "10.126..0.133"
+passiveport3 = "10.126.0.197"
+passiveport4 = "10.126.0.133"
 
 activeport1mask = "255.255.255.192"
 activeport2mask = "255.255.255.192"
