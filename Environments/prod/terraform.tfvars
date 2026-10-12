@@ -12,7 +12,7 @@ zone2 = "2"
 
 fortigate_sku = {
   x64 = {
-    payg = "fortinet_fg-vm_payg_2023"
+    payg = "fortinet_fg-vm_payg_2023_g2"
     byol = "fortinet_fg-vm"
     }
   }
