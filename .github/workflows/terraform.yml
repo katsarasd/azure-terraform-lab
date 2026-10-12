@@ -37,7 +37,24 @@ jobs:
           az vm image terms accept \
             --publisher fortinet \
             --offer fortinet_fortigate-vm_v5 \
-            --plan fortinet_fg-vm_payg_2023
+            --plan fortinet_fg-vm_payg_2023_g2 \
+            --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+            --only-show-errors
+
+          ACCEPTED=$(az vm image terms show \
+            --publisher fortinet \
+            --offer fortinet_fortigate-vm_v5 \
+            --plan fortinet_fg-vm_payg_2023_g2 \
+            --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+            --query accepted \
+            --output tsv)
+
+          echo "Marketplace terms accepted: ${ACCEPTED}"
+
+          if [ "${ACCEPTED}" != "true" ]; then
+            echo "FortiGate Marketplace terms were not accepted."
+            exit 1
+          fi
             
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
