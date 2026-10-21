@@ -9,3 +9,17 @@ resource_groups = {
     role     = "hub"
   }
 }
+
+virtual_networks = {
+  "con" = {
+    workload = "con"
+    resource_group = "con_hub"
+    address_space = "10.126.0.0/20"
+  
+  subnets = {
+    management = {
+      role = "mgmt"
+    }
+  }
+  }
+}
