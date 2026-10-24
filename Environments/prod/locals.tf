@@ -7,7 +7,7 @@ locals {
 
   vnet_names = {
     for key, vnet in var.vnets :
-    key => "vnet-${virtual_network.workload}-${var.environment}-${var.location_short}-${format("%02d", var.resource_name_sequence)}"
+    key => "vnet-${vnet.workload}-${var.environment}-${var.location_short}-${format("%02d", var.resource_name_sequence)}"
   }
 
 subnet_names = merge([
