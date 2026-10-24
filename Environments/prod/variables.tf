@@ -22,11 +22,22 @@ variable "resource_name_sequence" {
     error_message = "Sequence must be between 1 and 99."
   }
 }
-
-variable az_bastion {
-    type = string
+variable "zone1" {
+  description = "Azure Availability Zone."
+  type = string
 }
 
+variable "zone2" {
+  description = "Azure Availability Zone."
+  type = string
+}
+
+variable bastion_name {
+    type = string
+}
+variable bastion_pubic_ip {
+    type = string
+}
 variable resource_groups{
     type = map(object({
         workload = string
@@ -41,6 +52,7 @@ variable vnets{
         address_space  = list(string)
     
     subnets = map(object({
+        name                = optional(string)
         role                = string
         address_prefixes    = list(string)
         nsg_enabled         = optional(bool, false)
