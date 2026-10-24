@@ -8,7 +8,7 @@ module "resource_group" {
 }
 
 module "virtual_network" {
-  for_each = var.virtual_networks
+  for_each = var.vnets
 
   source = "Azure/avm-res-network-virtualnetwork/azurerm"
 
@@ -18,6 +18,5 @@ module "virtual_network" {
   parent_id = module.resource_group[each.value.resource_group].resource_id
 
   address_space = each.value.address_space
-
   
 }

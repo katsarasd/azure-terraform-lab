@@ -34,7 +34,7 @@ variable resource_groups{
     }))
 }
 
-variable virtual_networks{
+variable vnets{
     type = map(object({
         workload       = string
         resource_group = string
