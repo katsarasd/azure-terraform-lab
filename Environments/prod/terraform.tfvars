@@ -1,6 +1,7 @@
 location ="Italy North"
 location_short = "itn"
-enviroment = "prd"
+environment = "prd"
+resource_name_sequence = 1
 az_bastion = "bastion-prd-itn-01"
 
 resource_groups = {

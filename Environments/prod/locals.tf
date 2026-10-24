@@ -1,0 +1,20 @@
+locals {
+  resource_group_names = {
+    for key, resource_group in var.resource_groups :
+    key => "rg-${resource_group.workload}-${var.environment}-${resource_group.role}-${var.location_short}-${format("%02d", var.resource_name_sequence)}"
+  }
+
+
+  vnet_names = {
+    for key, virtual_network in var.virtual_networks :
+    key => "vnet-${virtual_network.workload}-${var.environment}-${var.location_short}-${format("%02d", var.resource_name_sequence)}"
+  }
+
+subnet_names = merge([
+    for vnet_key, vnet in var.vnets : {
+      for subnet_key, subnet in vnet.subnets :
+      "${vnet_key}-${subnet_key}" => "snet-${subnet.role}-${vnet.workload}-${var.environment}-${var.location_short}"
+    }
+  ]...)
+  
+}
