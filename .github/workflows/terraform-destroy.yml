@@ -36,7 +36,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Azure Login
@@ -49,22 +49,18 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.9.8"
+          terraform_version: "1.11.4"
           terraform_wrapper: false
+
+      - name: Show Terraform version
+        run: terraform version
 
       - name: Terraform Init
         run: terraform init -input=false
 
-      - name: Patch VNet Module IPAM Validation
+      - name: Patch VNet module IPAM validation
         shell: bash
         run: |
-          MODULE_FILE=".terraform/modules/virtual_network/variables.tf"
-
-          if [ ! -f "$MODULE_FILE" ]; then
-            echo "Module file not found: $MODULE_FILE"
-            exit 1
-          fi
-
           python3 - <<'PY'
           from pathlib import Path
 
@@ -84,16 +80,30 @@ jobs:
               "length(var.ipam_pools) <= 2)"
           )
 
-          content = path.read_text()
+          if not path.exists():
+              raise SystemExit(
+                  f"Virtual Network module file not found: {path}"
+              )
+
+          content = path.read_text(encoding="utf-8")
 
           if old not in content:
               raise SystemExit(
                   "Expected ipam_pools validation was not found. "
-                  "Check the VNet module version."
+                  "The Virtual Network module version may have changed."
               )
 
-          path.write_text(content.replace(old, new, 1))
-          print(f"Patched successfully: {path}")
+          path.write_text(
+              content.replace(old, new, 1),
+              encoding="utf-8"
+          )
+
+          if new not in path.read_text(encoding="utf-8"):
+              raise SystemExit(
+                  "The ipam_pools validation patch was not applied."
+              )
+
+          print(f"Successfully patched: {path}")
           PY
 
       - name: Terraform Validate
@@ -104,11 +114,16 @@ jobs:
           terraform plan \
             -destroy \
             -input=false \
+            -lock-timeout=5m \
             -out=destroy.tfplan
+
+      - name: Show Destroy Plan
+        run: terraform show -no-color destroy.tfplan
 
       - name: Terraform Destroy
         run: |
           terraform apply \
             -input=false \
             -auto-approve \
+            -lock-timeout=5m \
             destroy.tfplan
