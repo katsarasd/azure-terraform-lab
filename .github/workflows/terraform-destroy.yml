@@ -50,15 +50,65 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.9.8"
+          terraform_wrapper: false
 
       - name: Terraform Init
         run: terraform init -input=false
+
+      - name: Patch VNet Module IPAM Validation
+        shell: bash
+        run: |
+          MODULE_FILE=".terraform/modules/virtual_network/variables.tf"
+
+          if [ ! -f "$MODULE_FILE" ]; then
+            echo "Module file not found: $MODULE_FILE"
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path(
+              ".terraform/modules/virtual_network/variables.tf"
+          )
+
+          old = (
+              "condition     = var.ipam_pools == null || "
+              "(length(var.ipam_pools) >= 1 && "
+              "length(var.ipam_pools) <= 2)"
+          )
+
+          new = (
+              "condition     = var.ipam_pools == null ? true : "
+              "(length(var.ipam_pools) >= 1 && "
+              "length(var.ipam_pools) <= 2)"
+          )
+
+          content = path.read_text()
+
+          if old not in content:
+              raise SystemExit(
+                  "Expected ipam_pools validation was not found. "
+                  "Check the VNet module version."
+              )
+
+          path.write_text(content.replace(old, new, 1))
+          print(f"Patched successfully: {path}")
+          PY
 
       - name: Terraform Validate
         run: terraform validate
 
       - name: Terraform Destroy Plan
-        run: terraform plan -destroy -input=false -out=destroy.tfplan
+        run: |
+          terraform plan \
+            -destroy \
+            -input=false \
+            -out=destroy.tfplan
 
       - name: Terraform Destroy
-        run: terraform apply -input=false -auto-approve destroy.tfplan
+        run: |
+          terraform apply \
+            -input=false \
+            -auto-approve \
+            destroy.tfplan
