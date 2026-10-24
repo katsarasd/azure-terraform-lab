@@ -45,19 +45,20 @@ variable resource_groups{
     }))
 }
 
-variable vnets{
-    type = map(object({
-        workload       = string
-        resource_group = string
-        address_space  = list(string)
-    
-    subnets = map(object({
-        name                = optional(string)
-        role                = string
-        address_prefixes    = list(string)
-        nsg_enabled         = optional(bool, false)
-        route_table_enabled = optional(bool, false)
-    }))
-}))
+variable "vnets" {
+  description = "Virtual networks and their subnets."
 
+  type = map(object({
+    workload       = string
+    resource_group = string
+    address_space  = list(string)
+
+    subnets = map(object({
+      name                = optional(string)
+      role                = optional(string)
+      address_prefixes    = list(string)
+      nsg_enabled         = optional(bool, false)
+      route_table_enabled = optional(bool, false)
+    }))
+  }))
 }

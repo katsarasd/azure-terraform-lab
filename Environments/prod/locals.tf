@@ -11,10 +11,14 @@ locals {
   }
 
 subnet_names = merge([
-    for vnet_key, vnet in var.vnets : {
-      for subnet_key, subnet in vnet.subnets :
-      "${vnet_key}-${subnet_key}" => "snet-${subnet.role}-${vnet.workload}-${var.environment}-${var.location_short}"
-    }
-  ]...)
+  for vnet_key, vnet in var.vnets : {
+    for subnet_key, subnet in vnet.subnets :
+    "${vnet_key}-${subnet_key}" => (
+      subnet.name != null
+      ? subnet.name
+      : "snet-${subnet.role}-${vnet.workload}-${var.environment}-${var.location_short}"
+    )
+  }
+]...)
 
 }

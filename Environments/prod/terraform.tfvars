@@ -22,7 +22,7 @@ vnets = {
   
   subnets = {
     Azure-Bastion = {
-      role                  = "AzureBastionSubnet"
+      name                  = "AzureBastionSubnet"
       address_prefixes      = ["10.126.2.0/24"]
         nsg_enabled         = false
         route_table_enabled = false
