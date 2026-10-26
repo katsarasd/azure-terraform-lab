@@ -30,7 +30,7 @@ module "virtual_network" {
 
 module "bastion_public_ip" {
   source  = "Azure/avm-res-network-publicipaddress/azurerm"
-  #version = "0.2.1"
+  version = "0.2.1"
 
   name                = var.bastion_pubic_ip_name
   location            = var.location
@@ -45,7 +45,7 @@ module "bastion_public_ip" {
 
 module "bastion" {
   source  = "Azure/avm-res-network-bastionhost/azurerm"
-  #version = "0.9.0"
+  version = "0.9.0"
 
   name      = var.bastion_name
   location  = var.location
