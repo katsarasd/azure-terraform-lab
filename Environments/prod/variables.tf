@@ -35,7 +35,7 @@ variable "zone2" {
 variable bastion_name {
     type = string
 }
-variable bastion_pubic_ip {
+variable bastion_pubic_ip_name {
     type = string
 }
 variable resource_groups{
