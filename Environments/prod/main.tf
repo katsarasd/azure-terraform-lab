@@ -61,12 +61,13 @@ module "bastion" {
     ].subnets[
       "azure-bastion"
     ].resource_id
-
+    
+    create_public_ip     = false
     public_ip_address_id = module.bastion_public_ip.resource_id
   }
 
   copy_paste_enabled = true
-  file_copy_enabled  = false
+  file_copy_enabled  = true
 
   
 }
