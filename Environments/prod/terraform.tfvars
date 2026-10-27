@@ -5,12 +5,16 @@ resource_name_sequence = 1
 zone1                  = "1"
 zone2                  = "2"
 bastion_name           = "bastion-con-prd-itn"
-bastion_pubic_ip_name       = "pip-bas-con-prd-itn"
+bastion_pubic_ip_name  = "pip-bas-con-prd-itn"
 
 resource_groups = {
   "con_hub" = {
     workload = "con"
-    role     = "hub"
+    role     = "net"
+  }
+  "con_vm" = {
+    workload = "con"
+    role     = "vm"
   }
 }
 

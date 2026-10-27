@@ -56,11 +56,7 @@ module "bastion" {
   ip_configuration = {
     name = "bastion-ip-configuration"
 
-    subnet_id = module.virtual_network[
-      "con"
-    ].subnets[
-      "azure-bastion"
-    ].resource_id
+    subnet_id = module.virtual_network["con"].subnets["azure-bastion"].resource_id
     
     create_public_ip     = false
     public_ip_address_id = module.bastion_public_ip.resource_id
@@ -69,7 +65,48 @@ module "bastion" {
   copy_paste_enabled = true
   file_copy_enabled  = true
 
-  
 }
+
+module "windows_vm" {
+  source  = "Azure/avm-res-compute-virtualmachine/azurerm"
+  version = "0.21.0"
+
+  name                = "vm-con-prd-itn-01"
+  location            = var.location
+  resource_group_name = module.resource_group["con_hub"].name
+
+  zone = null
+
+  os_type  = "Windows"
+  sku_size = "Standard_D2s_v5"
+
+  network_interfaces = {
+    primary = {
+      name = "vm-con-prd-itn-01"
+
+      ip_configurations = {
+        primary = {
+          name                          = "ipconfig1"
+          private_ip_subnet_resource_id = module.virtual_network["con"].subnets["management"].resource_id
+          create_public_ip_address      = false
+        }
+      }
+    }
+  }
+
+  account_credentials = {
+    admin_credentials = {
+      username                           = "itsupport"
+      password                           = "Kodikos2026!"
+      generate_admin_password_or_ssh_key = false
+    }
+
+    password_authentication_disabled = false
+  }
+
+  enable_telemetry = false
+
+ }
+
 
   
