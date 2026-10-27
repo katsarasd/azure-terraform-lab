@@ -101,7 +101,7 @@ module "windows_vm" {
       generate_admin_password_or_ssh_key = false
     }
 
-    password_authentication_disabled = false
+    password_authentication_disabled = true
   }
 
   enable_telemetry = false
