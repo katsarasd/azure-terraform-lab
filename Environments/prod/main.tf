@@ -74,9 +74,10 @@ module "windows_vm" {
   name                = "vm-con-prd-itn-01"
   computer_name       = "vmcon01"
   location            = var.location
-  resource_group_name = module.resource_group["con_hub"].name
+  resource_group_name = module.resource_group["con_vm"].name
 
   zone = null
+  encryption_at_host_enabled = false
 
   os_type  = "Windows"
   sku_size = "Standard_D2s_v5"
