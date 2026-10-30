@@ -80,7 +80,7 @@ module "windows_vm" {
   encryption_at_host_enabled = false
 
   os_type  = "Windows"
-  sku_size = "Standard_D2s_v5"
+  sku_size = "Standard_D2s_v6"
 
   network_interfaces = {
     primary = {
