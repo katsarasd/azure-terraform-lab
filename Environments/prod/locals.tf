@@ -35,7 +35,7 @@ nsgs = merge([
 
   nsg_names = {
     for key, nsg in local.nsgs :
-    key => "nsg-snet-${nsg.subnet_role}-${nsg.workload}-${var.environment}-${var.location_short}"
+    key => "nsg-snet-${subnet.role}-${vnet.workload}-${var.environment}-${var.location_short}"
   }
   route_tables = merge([
     for vnet_key, vnet in var.vnets : {
@@ -55,6 +55,6 @@ nsgs = merge([
 
   route_table_names = {
     for key, route_table in local.route_tables :
-    key => "rt-${route_table.subnet_role}-${route_table.workload}-${var.environment}-${var.location_short}"
+    key => "rt-${subnet.role}-${vnet.workload}-${var.environment}-${var.location_short}"
   }
 }
