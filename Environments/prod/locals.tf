@@ -55,6 +55,6 @@ nsgs = merge([
 
   route_table_names = {
     for key, route_table in local.route_tables :
-    key => "rt-snet-${route_table.subnet_role}-${route_table.workload}-${var.environment}-${var.location_short}"
+    key => "rt-${route_table.subnet_role}-${route_table.workload}-${var.environment}-${var.location_short}"
   }
 }
