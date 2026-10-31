@@ -68,8 +68,8 @@ vnets = {
     management = {
         role                = "mgmt"
         address_prefixes    = ["10.126.3.0/24"]
-        nsg_enabled         = false
-        route_table_enabled = false
+        nsg_enabled         = true
+        route_table_enabled = true
       }
   }
   }
