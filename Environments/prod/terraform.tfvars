@@ -80,7 +80,7 @@ vnets = {
   
   subnets = {
     dc = {
-      name                  = "dc"
+      role                  = "dc"
       address_prefixes      = ["10.126.16.0/28"]
         nsg_enabled         = true
         route_table_enabled = true
@@ -100,7 +100,7 @@ vnets = {
   
   subnets = {
     app = {
-      name                  = "app"
+      role                  = "app"
       address_prefixes      = ["10.126.32.0/24"]
         nsg_enabled         = true
         route_table_enabled = true
