@@ -243,9 +243,9 @@ variable bastion_pubic_ip_name {
     type = string
 }
 
-variable firewall_next_hop_address{
-  type =string
-}
+#variable firewall_next_hop_address{
+  ##type =string
+#}
 
 variable resource_groups{
     type = map(object({
