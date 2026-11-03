@@ -30,14 +30,14 @@ fortigate_admin_password  = "Kodikos2026!"
 # Active FortiGate interface IPs
 activeport1 = "10.126.0.4"
 activeport2 = "10.126.0.69"
-activeport3 = "10.126.0.196"
-activeport4 = "10.126.0.132"
+activeport3 = "10.126.0.132"
+activeport4 = "10.126.0.196"
 
 # Passive FortiGate interface IPs
 passiveport1 = "10.126.0.5"
 passiveport2 = "10.126.0.70"
-passiveport3 = "10.126.0.197"
-passiveport4 = "10.126.0.133"
+passiveport3 = "10.126.0.133"
+passiveport4 = "10.126.0.197"
 
 activeport1mask = "255.255.255.192"
 activeport2mask = "255.255.255.192"
@@ -51,7 +51,7 @@ passiveport4mask = "255.255.255.192"
 
 port1gateway = "10.126.0.1"
 port2gateway = "10.126.0.65"
-port3gateway = "10.126.0.193"
+port3gateway = "10.126.0.129"
 
 
 resource_groups = {
@@ -84,14 +84,17 @@ resource_groups = {
     workload = "web"
     role     = "net"
   }
+
   "web_app" = {
     workload = "web"
     role     = "app"
   }
+
   "web_app" = {
     workload = "web"
     role     = "sql"
   }
+
   "web_app" = {
     workload = "web"
     role     = "st"
@@ -111,7 +114,7 @@ vnets = {
         nsg_enabled        = false
        route_table_enabled = false
       }
-      
+
       fgt-internal = {
         role = "fgt-internal"
         address_prefixes   = ["10.126.0.64/26"]
@@ -119,15 +122,15 @@ vnets = {
        route_table_enabled = false
       }
 
-      fgt-hasync = {
-        role = "fgt-hasync"
+      fgt-hamgmt = {
+        role = "hamgmt"
         address_prefixes    = ["10.126.0.128/26"]
         nsg_enabled         = false
         route_table_enabled = false
       }
 
-      fgt-hamgmt = {
-        role = "hamgmt"
+      fgt-hasync = {
+        role = "fgt-hasync"
         address_prefixes    = ["10.126.0.192/26"]
         nsg_enabled         = false
         route_table_enabled = false
