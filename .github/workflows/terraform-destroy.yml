@@ -58,9 +58,9 @@ jobs:
       - name: Terraform Init
         run: terraform init -input=false
 
-      #- name: Patch VNet module IPAM validation
-      #  shell: bash
-      #  run: |
+      - name: Patch VNet module IPAM validation
+        shell: bash
+        run: |
           python3 - <<'PY'
           from pathlib import Path
 
