@@ -3,5 +3,5 @@
 *.yaml text eol=lf
 *.yml text eol=lf
 
-Environments/prod/fortinet-ha/config-active.conf text eol=crlf
-Environments/prod/fortinet-ha/config-passive.conf text eol=crlf
+Environments/prod/fortinet-ha/config-active.conf text eol=lf
+Environments/prod/fortinet-ha/config-passive.conf text eol=lf
