@@ -20,6 +20,7 @@ module "network_security_group" {
 
 module "virtual_network" {
   for_each      = var.vnets
+  version = "0.23.0"
   source        = "Azure/avm-res-network-virtualnetwork/azurerm"
   name          = local.vnet_names[each.key]
   location      = var.location
