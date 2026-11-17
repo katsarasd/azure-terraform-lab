@@ -58,6 +58,74 @@ jobs:
       - name: Terraform Init
         run: terraform init -input=false
 
+      - name: Patch Virtual Network module IPAM validation
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          MODULE_FILE=".terraform/modules/virtual_network/variables.tf"
+
+          if [ ! -f "$MODULE_FILE" ]; then
+            echo "ERROR: Virtual Network module file not found:"
+            echo "$MODULE_FILE"
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path(
+              ".terraform/modules/virtual_network/variables.tf"
+          )
+
+          content = path.read_text(encoding="utf-8")
+
+          pattern = re.compile(
+              r'condition\s*=\s*'
+              r'var\.ipam_pools\s*==\s*null\s*\|\|\s*'
+              r'\(\s*'
+              r'length\(var\.ipam_pools\)\s*>=\s*1\s*'
+              r'&&\s*'
+              r'length\(var\.ipam_pools\)\s*<=\s*2\s*'
+              r'\)'
+          )
+
+          replacement = (
+              "condition     = var.ipam_pools == null "
+              "? true "
+              ": (length(var.ipam_pools) >= 1 "
+              "&& length(var.ipam_pools) <= 2)"
+          )
+
+          patched_content, count = pattern.subn(
+              replacement,
+              content
+          )
+
+          if count == 0:
+              raise SystemExit(
+                  "ERROR: Expected ipam_pools validation was "
+                  "not found. The downloaded module may have "
+                  "changed."
+              )
+
+          path.write_text(
+              patched_content,
+              encoding="utf-8"
+          )
+
+          print(
+              f"Patched {count} ipam_pools validation "
+              "occurrence(s)."
+          )
+          PY
+
+          echo "Patched validation:"
+          grep -n -A3 -B3 \
+            'length(var.ipam_pools)' \
+            "$MODULE_FILE"
+
       - name: Terraform Validate
         run: terraform validate
 
