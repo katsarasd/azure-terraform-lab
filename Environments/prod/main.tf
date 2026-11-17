@@ -136,7 +136,7 @@ module "windows_vm" {
   version = "0.21.0"
 
   name                = "vm-con-prd-itn-01"
-  computer_name       = "vmcon01"
+  computer_name       = "vmjump01"
   location            = var.location
   resource_group_name = module.resource_group["con_vm"].name
 
